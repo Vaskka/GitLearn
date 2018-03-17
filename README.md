@@ -1,2 +1,2 @@
 # GitLearn
-git学习用
+git学习用及一些练习
