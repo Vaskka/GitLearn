@@ -1,0 +1,10 @@
+sudo apt-get install build-essential
+sudo apt-get install g++-multilib gcc-multilib
+unzip NachOS4.1ForUbuntu.zip
+cd NachOS4.1\ for\ ubuntu/code/build.linux/
+echo '/usr/bin/g++ -m32 "$@"' > ~/g++
+chmod +x ~/g++
+export PATH=$HOME:$PATH
+gedit Makefile #修改Makefile  在210行处加入 --32 ，使汇编器以32位汇编代码。
+make depend
+make
