@@ -13,30 +13,31 @@ public class Solution {
         char[] secretArray = secret.toCharArray();
         char[] guessArray = guess.toCharArray();
 
-        int A = 0;
-        int B = 0;
-
-        HashSet<Integer> wrap = new HashSet<>();
+        HashSet<Integer> A = new HashSet<>();
+        HashSet<Integer> B = new HashSet<>();
 
         int i = 0;
         while (i < guessArray.length) {
 
             if (guessArray[i] == secretArray[i]) {
-                wrap.add(i);
-                A++;
+                A.add(i);
             }
             i++;
         }
 
         for (int j = 0; j < guessArray.length; j++) {
-
-            if (!wrap.contains(j) && guessArray[j] == secretArray[j]) {
-                wrap.add(j);
-                B++;
+            if (A.contains(j)) {
+                continue;
+            }
+            for (int k = 0; k < secretArray.length; k++) {
+                if (!A.contains(k) && !B.contains(k) && guessArray[j] == secretArray[k]) {
+                    B.add(k);
+                    break;
+                }
             }
         }
 
-        return String.format("%dA%dB", A, B);
+        return String.format("%dA%dB", A.size(), B.size());
 
     }
 
